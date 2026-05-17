@@ -30,9 +30,15 @@ const mockExpenses = [
 
 export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLElement>(null);
+  
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  const { scrollYProgress: featuresScroll } = useScroll({ target: featuresRef, offset: ['start end', 'end start'] });
+  const featuresOpacity = useTransform(featuresScroll, [0.7, 0.95], [1, 0]);
+  const featuresScale = useTransform(featuresScroll, [0.7, 0.95], [1, 0.9]);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
@@ -198,7 +204,11 @@ export default function LandingPage() {
       </motion.section>
 
       {/* ── Features ────────────────────────────────────────── */}
-      <section className="py-16 px-6 max-w-5xl mx-auto">
+      <motion.section 
+        ref={featuresRef} 
+        style={{ opacity: featuresOpacity, scale: featuresScale }}
+        className="py-16 px-6 max-w-5xl mx-auto"
+      >
         <motion.div
           {...fadeUp}
           initial="initial"
@@ -240,7 +250,7 @@ export default function LandingPage() {
             </motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* ── CTA Banner ──────────────────────────────────────── */}
       <motion.section
