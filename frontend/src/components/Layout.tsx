@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Users, LogOut, Menu, Wallet, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import AnimatedBackground from './animations/AnimatedBackground';
+import ScrollProgressBar from './animations/ScrollProgressBar';
 import { fadeUp, springTransition } from '../animations/variants';
 
 const navItems = [
@@ -13,6 +14,7 @@ const navItems = [
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, user } = useAuth();
@@ -151,7 +153,11 @@ export default function Layout() {
         </header>
 
         {/* Page content with transition */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div 
+          ref={scrollContainerRef} 
+          className="flex-1 overflow-y-auto overflow-x-hidden relative"
+        >
+          <ScrollProgressBar container={scrollContainerRef} />
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}

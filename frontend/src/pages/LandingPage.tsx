@@ -3,6 +3,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Wallet, ArrowRight, Users, Receipt, TrendingUp, Shield, Zap, Star } from 'lucide-react';
 import AnimatedBackground from '../components/animations/AnimatedBackground';
+import ScrollProgressBar from '../components/animations/ScrollProgressBar';
+import ScrollReveal from '../components/animations/ScrollReveal';
+import RevealText from '../components/animations/RevealText';
+import ScrollAnimatedCards from '../components/animations/ScrollAnimatedCards';
 import { staggerContainer, staggerItem, springTransition, fadeUp } from '../animations/variants';
 
 const features = [
@@ -42,6 +46,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <ScrollProgressBar />
       <AnimatedBackground />
 
       {/* ── Nav ─────────────────────────────────────────────── */}
@@ -84,26 +89,20 @@ export default function LandingPage() {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springTransition, delay: 0.3 }}
-            className="text-5xl sm:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight"
-          >
-            Fair splits,{' '}
-            <br />
-            <span className="gradient-text">zero stress.</span>
-          </motion.h1>
+          <ScrollReveal delay={0.2}>
+            <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+              Fair splits,{' '}
+              <br />
+              <span className="gradient-text">zero stress.</span>
+            </h1>
+          </ScrollReveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springTransition, delay: 0.45 }}
-            className="text-xl text-slate-500 max-w-lg mx-auto mb-10"
-          >
-            Track shared expenses, settle debts, and maintain friendships —
-            all in one beautiful dashboard.
-          </motion.p>
+          <ScrollReveal delay={0.4}>
+            <p className="text-xl text-slate-500 max-w-lg mx-auto mb-10">
+              Track shared expenses, settle debts, and maintain friendships —
+              all in one beautiful dashboard.
+            </p>
+          </ScrollReveal>
 
           {/* CTAs */}
           <motion.div
@@ -224,32 +223,17 @@ export default function LandingPage() {
           <p className="text-lg text-slate-500">Built for groups who care about transparency.</p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: false, margin: '-60px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
+        <ScrollAnimatedCards className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              variants={staggerItem}
-              transition={{ ...springTransition, delay: i * 0.05 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="glass-card rounded-2xl p-6 group cursor-default"
-            >
-              <motion.div
-                whileHover={{ scale: 1.12, rotate: 6 }}
-                className="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-200 transition-colors"
-              >
+            <div key={f.title} className="glass-card rounded-2xl p-6 group cursor-default h-full">
+              <div className="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-200 transition-colors">
                 <f.icon size={22} className="text-brand-600" />
-              </motion.div>
+              </div>
               <h3 className="font-semibold text-slate-800 mb-1">{f.title}</h3>
               <p className="text-sm text-slate-500">{f.desc}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </ScrollAnimatedCards>
       </motion.section>
 
       {/* ── CTA Banner ──────────────────────────────────────── */}

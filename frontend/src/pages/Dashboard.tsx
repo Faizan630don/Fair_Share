@@ -155,7 +155,8 @@ const Dashboard: React.FC = () => {
       <motion.div
         variants={staggerContainer}
         initial="initial"
-        animate="animate"
+        whileInView="animate"
+        viewport={{ once: true, margin: '-40px' }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
       >
         {stats.map((s) => <StatCard key={s.label} {...s} />)}
@@ -164,7 +165,8 @@ const Dashboard: React.FC = () => {
       {/* Activity feed */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
         transition={{ ...springTransition, delay: 0.45 }}
         className="card"
       >
