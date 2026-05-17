@@ -181,7 +181,7 @@ export default function LandingPage() {
         variants={staggerContainer}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: false, margin: '-80px' }}
         className="py-16 px-6 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6"
       >
         {stats.map((stat) => (
@@ -218,7 +218,7 @@ export default function LandingPage() {
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {features.map((f, i) => (
