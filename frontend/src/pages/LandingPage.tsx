@@ -1,23 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Wallet, ArrowRight, Users, Receipt, TrendingUp, Shield, Zap, Star } from 'lucide-react';
+import { Wallet, ArrowRight, Receipt } from 'lucide-react';
 import AnimatedBackground from '../components/animations/AnimatedBackground';
 import ScrollProgressBar from '../components/animations/ScrollProgressBar';
 import ScrollReveal from '../components/animations/ScrollReveal';
-import RevealText from '../components/animations/RevealText';
-import ScrollAnimatedCards from '../components/animations/ScrollAnimatedCards';
 import StickyFeatureShowcase from '../components/animations/StickyFeatureShowcase';
-import { staggerContainer, staggerItem, springTransition, fadeUp } from '../animations/variants';
-
-const features = [
-  { icon: Users, title: 'Split with Anyone', desc: 'Add friends, family or roommates to any group instantly.' },
-  { icon: Receipt, title: 'Track Every Expense', desc: 'Equal or custom splits — every rupee accounted for.' },
-  { icon: TrendingUp, title: 'Smart Balances', desc: 'Simplified debt algorithm minimizes total transactions.' },
-  { icon: Shield, title: 'Secure & Private', desc: 'JWT authentication keeps your data safe at all times.' },
-  { icon: Zap, title: 'Instant Settlements', desc: 'Record payments and clear debts in one tap.' },
-  { icon: Star, title: 'Beautiful Design', desc: 'A premium experience that feels like a top SaaS product.' },
-];
+import { staggerContainer, staggerItem, springTransition } from '../animations/variants';
 
 const stats = [
   { value: '50K+', label: 'Active users' },
@@ -35,15 +24,10 @@ const mockExpenses = [
 
 export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const featuresRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-
-  const { scrollYProgress: featuresScroll } = useScroll({ target: featuresRef, offset: ['start end', 'end start'] });
-  const featuresOpacity = useTransform(featuresScroll, [0.7, 0.95], [1, 0]);
-  const featuresScale = useTransform(featuresScroll, [0.7, 0.95], [1, 0.9]);
 
   return (
     <div className="min-h-screen overflow-x-hidden">
