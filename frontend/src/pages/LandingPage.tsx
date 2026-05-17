@@ -7,6 +7,7 @@ import ScrollProgressBar from '../components/animations/ScrollProgressBar';
 import ScrollReveal from '../components/animations/ScrollReveal';
 import RevealText from '../components/animations/RevealText';
 import ScrollAnimatedCards from '../components/animations/ScrollAnimatedCards';
+import StickyFeatureShowcase from '../components/animations/StickyFeatureShowcase';
 import { staggerContainer, staggerItem, springTransition, fadeUp } from '../animations/variants';
 
 const features = [
@@ -202,39 +203,41 @@ export default function LandingPage() {
         ))}
       </motion.section>
 
-      {/* ── Features ────────────────────────────────────────── */}
-      <motion.section 
-        ref={featuresRef} 
-        style={{ opacity: featuresOpacity, scale: featuresScale }}
-        className="py-16 px-6 max-w-5xl mx-auto"
-      >
-        <motion.div
-          {...fadeUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          transition={springTransition}
-          className="text-center mb-14"
-        >
+      {/* ── Features (Sticky Showcase) ────────────────────────── */}
+      <div className="py-20">
+        <div className="text-center mb-10">
           <h2 className="text-4xl font-extrabold text-slate-900 mb-3">
             Everything you need to
             <span className="gradient-text"> split fairly</span>
           </h2>
-          <p className="text-lg text-slate-500">Built for groups who care about transparency.</p>
-        </motion.div>
-
-        <ScrollAnimatedCards className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((f, i) => (
-            <div key={f.title} className="glass-card rounded-2xl p-6 group cursor-default h-full">
-              <div className="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-200 transition-colors">
-                <f.icon size={22} className="text-brand-600" />
-              </div>
-              <h3 className="font-semibold text-slate-800 mb-1">{f.title}</h3>
-              <p className="text-sm text-slate-500">{f.desc}</p>
-            </div>
-          ))}
-        </ScrollAnimatedCards>
-      </motion.section>
+          <p className="text-lg text-slate-500">Scroll down to see the features.</p>
+        </div>
+        
+        <StickyFeatureShowcase 
+          features={[
+            { 
+              title: 'Split with Anyone', 
+              description: 'Add friends, family or roommates to any group instantly.',
+              image: '👥' // We can use emojis or components
+            },
+            { 
+              title: 'Track Every Expense', 
+              description: 'Equal or custom splits — every rupee accounted for.',
+              image: '🧾'
+            },
+            { 
+              title: 'Smart Balances', 
+              description: 'Simplified debt algorithm minimizes total transactions.',
+              image: '📊'
+            },
+            { 
+              title: 'Secure & Private', 
+              description: 'JWT authentication keeps your data safe at all times.',
+              image: '🔒'
+            }
+          ]}
+        />
+      </div>
 
       {/* ── CTA Banner ──────────────────────────────────────── */}
       <motion.section
