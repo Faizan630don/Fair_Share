@@ -53,7 +53,7 @@ export default function SettleUpModal({ isOpen, onClose, defaultOwee = 'Alex', a
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">Amount</label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-medium">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-medium">₹</span>
                 <input 
                   type="number" 
                   defaultValue={amount}

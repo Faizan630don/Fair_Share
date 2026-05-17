@@ -1,3 +1,4 @@
+import { formatCurrency } from '../../utils/format';
 import type { Activity } from '../../types';
 
 interface ActivityItemProps {
@@ -15,7 +16,7 @@ export default function ActivityItem({ activity, currentUserId }: ActivityItemPr
       </div>
       <div className="text-right">
         <p className={`font-bold ${isPayer ? 'text-emerald-600' : 'text-red-500'}`}>
-          {isPayer ? '+' : '-'}${activity.amount.toFixed(2)}
+          {isPayer ? '+' : '-'}{formatCurrency(activity.amount)}
         </p>
       </div>
     </div>

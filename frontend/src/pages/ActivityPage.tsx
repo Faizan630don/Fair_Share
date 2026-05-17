@@ -7,7 +7,7 @@ export default function ActivityPage() {
       type: 'expense',
       icon: Receipt,
       title: 'You added "Dinner at Taj" in Goa Trip 2026',
-      amount: '$150.00',
+      amount: '₹150',
       amountType: 'lent',
       time: '2 hours ago',
       isNew: true
@@ -17,7 +17,7 @@ export default function ActivityPage() {
       type: 'settle',
       icon: Wallet,
       title: 'Sarah M. paid you',
-      amount: '$45.00',
+      amount: '₹45',
       amountType: 'received',
       time: 'Yesterday',
       isNew: false
@@ -36,7 +36,7 @@ export default function ActivityPage() {
       type: 'expense',
       icon: Receipt,
       title: 'David L. added "Hotel booking" in Goa Trip 2026',
-      amount: '$80.00',
+      amount: '₹80',
       amountType: 'borrowed',
       time: 'May 12',
       isNew: false
