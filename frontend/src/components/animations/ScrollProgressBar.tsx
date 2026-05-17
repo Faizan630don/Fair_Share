@@ -2,7 +2,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import React from 'react';
 
 interface Props {
-  container?: React.RefObject<HTMLElement>;
+  container?: React.RefObject<HTMLDivElement>;
 }
 
 export default function ScrollProgressBar({ container }: Props) {
